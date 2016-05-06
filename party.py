@@ -2,7 +2,7 @@
 
 
 from flask import Flask, session, render_template, request, flash, redirect
-from flask_debugtoolbar import DebugToolbarExtension
+# from flask_debugtoolbar import DebugToolbarExtension
 from model import Game, connect_to_db
 
 app = Flask(__name__)
@@ -37,6 +37,6 @@ def games():
 if __name__ == "__main__":
     app.debug = True
     app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-    DebugToolbarExtension(app)
+    # DebugToolbarExtension(app)
     connect_to_db(app)
     app.run()

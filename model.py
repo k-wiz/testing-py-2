@@ -12,6 +12,8 @@ class Game(db.Model):
     description = db.Column(db.String(100))
 
 
+
+# calling test database
 def connect_to_db(app, db_uri="postgresql:///games"):
     app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     db.app = app
@@ -20,8 +22,14 @@ def connect_to_db(app, db_uri="postgresql:///games"):
 
 def example_data():
     """Create example data for the test database."""
-    #FIXME: write a function that creates a game and adds it to the database.
-    print "FIXME"
+
+    Game.query.delete()
+
+    example_game = Game(name='Ascension', 
+                        description='Ascension is a deck building card game.')
+
+    db.session.add(example_game)
+    db.session.commit()
 
 
 if __name__ == '__main__':
@@ -29,4 +37,3 @@ if __name__ == '__main__':
 
     connect_to_db(app)
     print "Connected to DB."
- 
